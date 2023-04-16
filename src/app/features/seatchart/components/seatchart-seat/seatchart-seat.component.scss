@@ -1,3 +1,18 @@
 .seat{
-  @apply border-emerald-800 border w-10 h-8 cursor-pointer hover:bg-emerald-300 rounded-md;
+  @apply w-10 h-8 rounded-t-lg rounded-b-md p-1;
+}
+.seat-free{
+  @apply bg-white hover:bg-slate-400 cursor-pointer;
+}
+.seat-lock{
+  @apply bg-gray-600;
+}
+.seat-sold{
+  @apply bg-gray-600;
+}
+.seat-none{
+  @apply bg-transparent;
+}
+.active-seat{
+  @apply bg-green-600;
 }

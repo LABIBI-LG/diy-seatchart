@@ -1,18 +1,52 @@
-<p>seatchart works!</p>
-<ul>
-  <li *ngFor="let row of rows index as i" >
-    <ul class="flex">
-      <li *ngFor="let column of columns index as j" class="m-1">
-          <app-seatchart-seat [seatId]="row+j.toString()" (activeOut)="tt($event)"></app-seatchart-seat>
+<section class="w-96">
+  <div>
+    <div class="screen-border"></div>
+    <div class="screen"></div>
+  </div>
+
+  <div class="mt-5 -ml-5 flex justify-center">
+    <ul>
+      <li *ngFor="let item of response.data.list" class="my-2">
+        <ng-template [ngIf]="item.rows==='none'" [ngIfElse]="rows">
+          <div class=" w-7 h-8 rounded-t-lg rounded-b-md p-1"></div>
+        </ng-template>
+        <ng-template #rows>
+          <div class="w-7 h-8 rounded-t-lg rounded-b-md p-1 text-gray-400">{{ item.rows }}</div>
+        </ng-template>
       </li>
     </ul>
-  </li>
-</ul>
+    
+    <ul>
+      <li *ngFor="let item of response.data.list">
+        <ul class="flex">
+          <ng-template [ngIf]="item.rows==='none'" [ngIfElse]="seat">
+            <li *ngFor="let item2 of width" class="m-1">
+              <app-seatchart-seat [status]="'none'"></app-seatchart-seat>
+            </li>
+          </ng-template>
 
-<div>
+          <ng-template #seat>
+            <li *ngFor="let item2 of item.seat index as j" class="m-1">
+              <app-seatchart-seat [seatId]="item.rows + item2.id" [status]="item2.status" [type]="item2.type"
+                (activeOut)="tt($event)"></app-seatchart-seat>
+            </li>
+          </ng-template>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <ul class="flex w-full justify-center">
+    <li *ngFor="let item of width index as i" class="w-10 mx-1 text-center text-gray-400">
+      {{i+1}}
+    </li>
+  </ul>
+</section>
+
+<div class="mt-5">
   已選擇到
   <span *ngFor="let item of seatArray">
     {{item}} ,
   </span>
 </div>
-

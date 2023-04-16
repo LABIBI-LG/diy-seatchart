@@ -1,1 +1,25 @@
-<div class="seat" [class.bg-emerald-800]="isActive" (click)="active()">{{ seatId }}</div>
+<div [ngSwitch]="status">
+  <ng-container *ngSwitchCase="'lock'">
+    <div class="seat seat-lock">
+      <img *ngIf="type==='handicapped'" class="h-full mx-auto" src="assets/images/handicapped.png" alt="handicapped">
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'sold'">
+    <div class="seat seat-sold">
+      <img *ngIf="type==='handicapped'" class="h-full mx-auto" src="assets/images/handicapped.png" alt="handicapped">
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'none'">
+    <div class="seat seat-none">
+      
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <div class="seat seat-free" [class.active-seat]="isActive" (click)="active()">
+      <img *ngIf="type==='handicapped'" class="h-full mx-auto" src="assets/images/handicapped.png" alt="handicapped">
+    </div>
+  </ng-container>
+</div>

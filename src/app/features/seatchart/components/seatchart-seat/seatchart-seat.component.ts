@@ -14,6 +14,8 @@ export class SeatchartSeatComponent implements OnInit {
   constructor() { }
   @Input() seatId: string = '';
   @Input() isActive: boolean = false;
+  @Input() status:string = '';
+  @Input() type:string = '';
   @Output() activeOut = new EventEmitter<SeatData>();
 
   ngOnInit(): void {
